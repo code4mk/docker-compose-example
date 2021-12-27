@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  site:
+    build:
+      context: ./dockerfiles
+      dockerfile: nginx.dockerfile
+    container_name: static-site
+    ports:
+      - 8081:80
+    volumes:
+      - ./src:/var/www/html/static-site

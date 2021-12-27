@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  # mysql
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    tty: true
+    restart: unless-stopped
+    # persist db data
+    volumes:
+      - "dbdata:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    env_file: ./.env
+    environment:
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=homestead
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret
+      - SERVICE_TAGS=dev
+      - SERVICE_NAME=mysql
+    networks:
+      - dbdata
+
+volumes:
+  dbdata:
+
+networks:
+  dbdata:
