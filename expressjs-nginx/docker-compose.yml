@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  
+
+  app:
+    build:
+      context: ./dockerfiles
+      dockerfile: project.dockerfile
+    container_name: express-project
+    working_dir: /usr/src/app
+    volumes:
+      - ./project:/usr/src/app
+    networks: 
+      - app-network
+    # ports:
+    #   - "3006:3006"
+  
+  nginx:
+    build:
+      context: ./dockerfiles
+      dockerfile: nginx.dockerfile
+    container_name: express-nginx
+    networks: 
+      - app-network
+    ports:
+      - "8002:80"
+    depends_on:
+      - app
+
+networks:
+  app-network:
