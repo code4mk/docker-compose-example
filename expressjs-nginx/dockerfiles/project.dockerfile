@@ -1,7 +1,5 @@
 FROM node:latest
 
-LABEL maintainer="robertoachar@gmail.com"
-
 WORKDIR /usr/src/app
 
 VOLUME [ "/usr/src/app" ]
